@@ -1,0 +1,49 @@
+🚀 DeFi Platform - Windows Installation Guide
+
+STEP 1: Download & Extract
+- Download the complete project folder
+- Extract to your desired location (e.g., C:\defi-platform)
+
+STEP 2: Install Node.js (if not installed)
+- Go to https://nodejs.org
+- Download LTS version (20.x or higher)
+- Install with default settings
+- Restart your computer
+
+STEP 3: Open in VS Code
+- Install VS Code from https://code.visualstudio.com
+- Open VS Code
+- File → Open Folder → Select your defi-platform folder
+
+STEP 4: Easy Start Options
+
+Option A - Double Click (Simplest):
+- Double-click "start.bat" file
+- Wait for installation to complete
+- Platform will open automatically
+
+Option B - VS Code Terminal:
+- In VS Code: Terminal → New Terminal
+- Type: npm install
+- Type: npm run dev
+
+STEP 5: Access Your Platform
+- Open browser to: http://localhost:5000
+- Admin login: username "admin", password "admin@123"
+- Register new users through the interface
+
+🎉 You're Ready!
+Your DeFi platform is now running with:
+✅ Beautiful enhanced interface
+✅ Lending & borrowing features  
+✅ Token swapping
+✅ Admin dashboard
+✅ Portfolio management
+✅ Social sharing features
+
+Need Help?
+- Check README.md for detailed information
+- All dependencies are included
+- No database setup required (uses memory storage)
+
+Enjoy your DeFi platform!

@@ -1,0 +1,13 @@
+2025-05-28 20:09:33.117 IST [22468] LOG:  starting PostgreSQL 17.5 on x86_64-windows, compiled by msvc-19.43.34808, 64-bit
+2025-05-28 20:09:33.120 IST [22468] LOG:  listening on IPv6 address "::1", port 5432
+2025-05-28 20:09:33.120 IST [22468] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-05-28 20:09:33.174 IST [29532] LOG:  database system was shut down at 2025-05-28 20:08:50 IST
+2025-05-28 20:09:33.205 IST [22468] LOG:  database system is ready to accept connections
+2025-05-28 20:12:53.168 IST [22468] LOG:  received fast shutdown request
+2025-05-28 20:12:53.168 IST [36536] ERROR:  canceling statement due to user request
+2025-05-28 20:12:53.171 IST [22468] LOG:  aborting any active transactions
+2025-05-28 20:12:53.172 IST [22468] LOG:  background worker "logical replication launcher" (PID 36536) exited with exit code 1
+2025-05-28 20:12:53.175 IST [40744] LOG:  shutting down
+2025-05-28 20:12:53.177 IST [40744] LOG:  checkpoint starting: shutdown immediate
+2025-05-28 20:12:53.595 IST [40744] LOG:  checkpoint complete: wrote 1012 buffers (6.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.027 s, sync=0.381 s, total=0.420 s; sync files=310, longest=0.003 s, average=0.002 s; distance=4830 kB, estimate=4830 kB; lsn=0/1A29D00, redo lsn=0/1A29D00
+2025-05-28 20:12:53.681 IST [22468] LOG:  database system is shut down

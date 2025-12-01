@@ -1,0 +1,791 @@
+Skip to content
+Files
+Commands
+Search
+Packager files
+Config files
+Chats
+Archived
+App Troubleshooting Console Errors
+21 minutes ago
+banking app user login system design
+31 minutes ago
+Linux Command Line Basics
+2 days ago
+Solidity Smart Contracts Wallet Comparison Explained
+2 days ago
+crypto interest rates explained
+2 days ago
+I apologize, but there's no previous context or code snippet provided in the message. Without seeing the specific implementation details, I cannot give a complete explanation. Could you please share the code or provide more context about what you're asking about?
+22 days ago
+
+You’re using the free Basic AI model. Upgrade to get better AI responses and more accurate code generation and analysis.
+The app isn't running, review and fix errors in the Console
+
+SM
+
+1ms22cs130
+Assistant
+11 minutes ago
+To troubleshoot the issue with your app not running, you should start by checking the "Logs" tab in the Deployments pane for any error messages or stack traces that could indicate the problem. Common issues include:
+
+Port Binding: Ensure your server is listening on 0.0.0.0. If it's not, modify your binding code to:
+
+# Example for a Flask app
+app.run(host='0.0.0.0', port=5000)
+For other frameworks, the way to bind the server will vary, but make sure to use 0.0.0.0.
+
+Missing Dependencies: If the logs indicate that certain dependencies are missing, consider checking your requirements.txt (for Python) or package.json (for Node.js) to ensure all required packages are listed.
+
+Program Execution: Confirm that your program is designed to run continuously. If it exits immediately after execution, it won't work properly in a deployment environment.
+
+Once you've implemented these checks and adjustments, try running the app again. If there are specific error messages in the console that you need help with, please share them for more focused assistance.
+
+debug the errors and start my app
+
+SM
+
+1ms22cs130
+Assistant
+11 minutes ago
+I notice two main errors in the logs:
+
+Database connection error: "Control plane request failed: endpoint is disabled"
+React Router conflict: "Identifier 'Route' has already been declared"
+Let's fix these issues:
+
+First, let's fix the Route import conflict in App.tsx:
+client/src/App.tsx
+For the database error, you'll need to create a new PostgreSQL database in Replit:
+Click on "Tools" in the left sidebar
+Select "Database"
+Click "Create a Database"
+Wait for the database to be provisioned
+The DATABASE_URL environment variable will be automatically set
+After making these changes, let's restart the development server:
+
+npm run dev
+Checkpoint made
+Fix Route conflict and setup database
+17 minutes ago
+•
+ask weather user or admin and inside admin login see to it that admin can control all transactions of all the users
+
+SM
+
+1ms22cs130
+Assistant
+5 minutes ago
+I'll help you implement user/admin role distinction and admin transaction control. Looking at the codebase, we need to modify a few files:
+
+First, let's update the auth page to handle role selection:
+client/src/pages/auth.tsx
+Let's enhance the admin page to display all user transactions:
+client/src/pages/admin.tsx
+Update the wallet context to include role information:
+client/src/lib/walletContext.tsx
+These changes will:
+
+Allow selecting role during signup
+Add admin-only access to the admin dashboard
+Enable viewing and filtering all user transactions
+Protect admin routes from unauthorized access
+Checkpoint made
+Implement admin controls and transaction management
+15 minutes ago
+•
+the app has crashed so make changes and still not asking admin / user to login and even login is not getting successful
+
+SM
+
+1ms22cs130
+Assistant
+4 minutes ago
+I'll help fix the login functionality and add proper user/admin role selection. Let's make these changes:
+
+First, let's update the auth page to properly handle role selection and login:
+client/src/pages/auth.tsx
+Update the wallet context to handle admin status:
+client/src/lib/walletContext.tsx
+Let's update the App component to properly handle protected routes:
+client/src/App.tsx
+Let's restart the development server:
+
+npm run dev
+These changes will:
+
+Add proper role selection during login/signup
+Handle admin status in the wallet context
+Protect admin routes from non-admin users
+Add proper navigation after successful login
+Improve error handling and user feedback
+Now when you run the app, you should see:
+
+A login/signup form with role selection
+Proper redirection after login (admin -> /admin, user -> /dashboard)
+Protected routes based on authentication and role
+Better error messages if login fails
+Checkpoint made
+Implement proper auth with role-based access
+13 minutes ago
+•
+solve all the errors in the app
+
+SM
+
+1ms22cs130
+Assistant
+2 minutes ago
+I notice several issues that need to be fixed:
+
+The import error for useNavigate - we need to switch to using the correct import from wouter
+React whitespace warning in the table component
+Failed development server startup
+Let's fix these:
+
+First, let's fix the navigation in auth.tsx:
+client/src/pages/auth.tsx
+Let's fix the whitespace warning in the lending market component:
+client/src/components/lending-market.tsx
+For the failed development server, let's restart it:
+npm install && npm run dev
+Set
+Start Dev Server
+to run
+npm install
+npm run dev
+Checkpoint made
+Fix navigation, table warnings and restart dev server
+12 minutes ago
+•
+app is crashing better solve the error this my last chance else i quit replit
+
+SM
+
+1ms22cs130
+Assistant
+1 minute ago
+I'll help fix the crashing issues. From the error logs, there are two main problems:
+
+The useNavigate import from wouter is incorrect - we need to use useLocation instead
+There's a whitespace issue in a table component
+Let's fix these issues:
+
+First, let's fix the navigation in auth.tsx:
+client/src/pages/auth.tsx
+Let's fix the lending market component to remove whitespace issues:
+client/src/components/lending-market.tsx
+Let's restart the development server to apply these changes:
+
+Set
+Start Dev Server
+to run
+npm install
+npm run dev
+Assistant automatically restarted your App after applying file changes. You can disable this behavior in 
+.
+Checkpoint made
+Fix navigation and table rendering issues
+11 minutes ago
+•
+why is the app crashing
+
+SM
+
+1ms22cs130
+Assistant
+just now
+To address the crashing issue in your app, we should systematically debug common problems that could be causing this. Based on the information provided, here are some steps to check and resolve the issues:
+
+Check Console Errors: Inspect the console for any error messages when the app crashes. This will provide signals about where the problem lies.
+
+Verify the Authentication Flow:
+
+Ensure that the authentication logic in auth.tsx is correctly handling user and admin logins. Mismanagement of state could lead to failures in the login process. Make sure the state updating methods are functioning as expected.
+Inspect any Uncaught Exceptions:
+
+In auth.tsx, ensure that the error handling logic in your handleSubmit method correctly catches errors. This can prevent crashes if something fails.
+Application Port Configuration:
+
+Ensure your application is set to listen on 0.0.0.0:5000, which allows access from external users. Here’s how to modify the relevant part in client/src/App.tsx:
+import { Route, Switch } from "wouter"; // Ensure you still import from wouter correctly 
+import { Toaster } from "@/components/ui/toaster";
+import NotFound from "@/pages/not-found";
+import Dashboard from "@/pages/dashboard";
+import Lend from "@/pages/lend";
+import Borrow from "@/pages/borrow";
+import Swap from "@/pages/swap";
+import History from "@/pages/history";
+import Auth from "@/pages/auth";
+import Admin from "@/pages/admin";
+import { useWallet } from "@/lib/walletContext";
+// Make sure all your imports are correct
+import Header from "@/components/header";
+import WalletConnectModal from "@/components/wallet-connect-modal";
+import SettingsModal from "@/components/settings-modal";
+import { SettingsProvider } from "@/lib/settingsContext";
+import { WalletProvider } from "@/lib/walletContext";
+import { useEffect } from "react";
+function App() {
+  // Ensure proper set up of the app entry point here
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .btn-hover-effect {
+        transition: all 0.3s ease;
+      }
+      .btn-hover-effect:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  return (
+    <SettingsProvider>
+      <WalletProvider>
+        <div className="min-h-screen bg-gray-50 flex flex-col">
+          <Header />
+          <main className="flex-grow flex flex-col">
+            <Switch>
+              <Route path="/auth"><Auth /></Route>
+              <Route path="/"><ProtectedRoute><Dashboard /></ProtectedRoute></Route>
+              <Route path="/lend"><ProtectedRoute><Lend /></ProtectedRoute></Route>
+              <Route path="/borrow"><ProtectedRoute><Borrow /></ProtectedRoute></Route>
+              <Route path="/swap"><ProtectedRoute><Swap /></ProtectedRoute></Route>
+              <Route path="/history"><ProtectedRoute><History /></ProtectedRoute></Route>
+              <Route path="/admin"><ProtectedRoute requireAdmin={true}><Admin /></ProtectedRoute></Route>
+              <Route><NotFound /></Route>
+            </Switch>
+          </main>
+          <WalletConnectModal />
+          <SettingsModal />
+          <Toaster />
+        </div>
+      </WalletProvider>
+    </SettingsProvider>
+  );
+}
+export default App;
+// Make sure you catch potential errors here if needed
+Restart the Development Server:
+After making these changes, restart the development server with the following command to ensure all updates are applied:
+npm install && npm run dev
+Add Debugging Statements:
+
+If the issue persists, add debugging statements (like console.log()) in critical parts of your code, especially around state changes and async functions.
+Review the Lending Market Component: If you have made changes to your lending-market.tsx, ensure all components are imported correctly and that there are no errors in the rendering logic.
+
+By following these steps and checking the provided code, you should be able to diagnose and resolve the crashing issue. If you encounter specific errors in the console, feel free to share those for further assistance!
+
+can you make changes
+
+SM
+
+1ms22cs130
+Assistant
+2 minutes ago
+To help you troubleshoot the crashing issue and improve the functionality, we will make the following changes to your application:
+
+Ensure that your application listens on the correct port (0.0.0.0:5000).
+Verify that the navigation logic in your auth.tsx is correctly set up so it properly routes users based on their roles.
+Implement better error handling in critical parts of the code to capture any uncaught exceptions that could lead to crashes.
+Here are the necessary code updates to address these issues.
+
+Step 1: Update the App.tsx File
+Make sure the application is properly configured to listen on 0.0.0.0:5000. The App.tsx file does not need changes; it is already structured correctly to handle routes. You just need to ensure the underlying server starts on the correct port.
+
+Step 2: Update the auth.tsx File
+Here’s the modified code for auth.tsx to structure the authentication flow correctly and improve error handling:
+
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+import { useState } from "react";
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const success = await connectWallet(); // make sure this is returning true/false based on your connection logic
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: isLogin ? "Login Successful" : "Account Created Successfully",
+          description: isLogin ? "Logged in successfully" : "Account created successfully",
+        });
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error("Authentication failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Your form elements here, e.g. username, password inputs */}
+      <Button type="submit">{isLogin ? "Login" : "Sign Up"}</Button>
+    </form>
+  );
+}
+Step 3: Restart the Development Server
+After these changes, restart your development server by running:
+
+npm install && npm run dev
+Conclusion
+With these updates, your app should better handle user authentication and login errors while ensuring that it operates correctly on port 5000. If the crashes persist, be sure to check the console for specific error messages that can help further diagnose the problem. If you have any specific errors or logs after these changes, feel free to share them for more precise assistance!
+
+you make changes on my behlf and run the app
+
+SM
+
+1ms22cs130
+Assistant
+3 minutes ago
+To make the necessary changes to your application and improve its functionality, I'll update the auth.tsx file for proper error handling and ensure the app listens on the correct port (5000) for development. After these changes, I will guide you on how to run the app.
+
+Changes to auth.tsx
+Here’s the complete code for auth.tsx with proper error handling and routing logic:
+
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+import { useState } from "react";
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const success = await connectWallet();
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: isLogin ? "Login Successful" : "Account Created Successfully",
+          description: isLogin ? "Logged in successfully" : "Account created successfully",
+        });
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error("Authentication failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Your form elements here: username and password inputs */}
+      <Button type="submit">{isLogin ? "Login" : "Sign Up"}</Button>
+    </form>
+  );
+}
+Run the App
+To run the app after you've made these changes, follow these steps:
+
+In your Replit environment, make sure you have the command set correctly to run the app. Typically, it should be structured like this in your .replit file:
+
+run = "npm run dev"
+Click on the "Run" button at the top of the Replit interface to start the development server.
+
+Summary
+After making the updates to auth.tsx, the application should now handle user login more effectively and communicate any errors. Please ensure that your development server is started properly to see these changes in action. If you encounter any new errors or if the app still crashes, please share those details for further diagnosis!
+
+this is the currecnt code
+
+SM
+
+1ms22cs130
+Assistant
+1 minute ago
+Based on the code you've provided for the Auth component, it appears to implement wallet connection functionality with roles of "user" and "admin." However, you mentioned that the app is crashing, and it seems there could be improvements to enhance error handling and ensure it navigates properly after login.
+
+Here’s the complete code with improvements to the Auth component including enhanced error handling and ensuring the admin role is managed correctly:
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const success = await connectWallet();
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: "Success!",
+          description: isLogin ? "Logged in successfully" : "Account created successfully",
+        });
+        // Redirect to the appropriate page based on role
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error("Authentication failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message, // Provide specific error feedback
+        variant: "destructive",
+      });
+    }
+  };
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">{isLogin ? "Login" : "Sign Up"}</h2>
+          <p className="text-gray-600">Connect your wallet to continue</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <div className="flex justify-center gap-4">
+              <Button
+                type="button"
+                variant={role === "user" ? "default" : "outline"}
+                onClick={() => setRole("user")}
+              >
+                User
+              </Button>
+              <Button
+                type="button"
+                variant={role === "admin" ? "default" : "outline"}
+                onClick={() => setRole("admin")}
+              >
+                Admin
+              </Button>
+            </div>
+          </div>
+          <Button type="submit" className="w-full">
+            Connect Wallet
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+Key Changes Made:
+Detailed Error Handling: The catch block now reports the specific error message which helps with debugging.
+Clear Role Management: Role setting and user redirection are maintained to ensure that admins are directed to the admin panel while regular users go to the dashboard.
+Next Steps
+Run your application to see if these improvements resolve the crashing issue. You can start it by clicking the "Run" button in Replit.
+After running, monitor the console for any further error messages, which can give insights into persistent issues.
+If the app continues to experience crashes or if there are additional errors, please provide the console output or error logs for further assistance!
+
+still the app is crashing for what reason
+
+SM
+
+1ms22cs130
+Assistant
+2 minutes ago
+To diagnose the recurring crashes in your app, we should look at several potential issues, particularly in relation to your Auth component and the overall app structure. Here are the steps we can take to identify and mitigate these problems:
+
+Check Console Output: Pay attention to any console errors that might give clues about what's going wrong. This is crucial for diagnosing the problem.
+
+Error Handling in Auth Component: Ensure comprehensive error handling is in place so you can receive clear feedback when something goes wrong. Your current error message in the catch block should reflect specific issues encountered during wallet connection.
+
+Validate Wallet Connection Logic: Ensure that the connectWallet() function from useWallet is properly handling the connection process and any exceptions/errors it might throw.
+
+Verify Routing Logic: Ensure that the setLocation call is correctly redirecting based on the user's role and that the routes exist as expected.
+
+Run Debugger: Utilize Replit's debugging tools to step through your app and observe where it crashes. This approach provides visibility into variable states at the time of the crash.
+
+Updated Code with Improved Error Handling in Auth.tsx
+Here’s your Auth.tsx file with reinforced error handling:
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const success = await connectWallet();
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: "Success!",
+          description: isLogin ? "Logged in successfully" : "Account created successfully",
+        });
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error("Authentication failed, please check your wallet connection.");
+      }
+    } catch (error) {
+      console.error("Error during wallet connection:", error); // Log the error for debugging
+      toast({
+        title: "Error",
+        description: error.message || "An unexpected error occurred. Please try again.", // More informative error messages
+        variant: "destructive",
+      });
+    }
+  };
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">{isLogin ? "Login" : "Sign Up"}</h2>
+          <p className="text-gray-600">Connect your wallet to continue</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <div className="flex justify-center gap-4">
+              <Button
+                type="button"
+                variant={role === "user" ? "default" : "outline"}
+                onClick={() => setRole("user")}
+              >
+                User
+              </Button>
+              <Button
+                type="button"
+                variant={role === "admin" ? "default" : "outline"}
+                onClick={() => setRole("admin")}
+              >
+                Admin
+              </Button>
+            </div>
+          </div>
+          <Button type="submit" className="w-full">Connect Wallet</Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+Summary of Changes
+Enhanced Error Logging: Errors are logged to the console which aids in debugging.
+More Informative Toast Messages: The toast now provides clearer feedback based on different failure scenarios.
+Final Steps
+After updating your code:
+
+Run your application.
+Monitor console output for any errors and try to connect the wallet as a user/admin.
+If it crashes again, check for any specific error messages in the console and share them for further assistance.
+Let me know if you need help with the debugging or if you notice any specific error messages!
+
+not able to change auth.tsx
+
+SM
+
+1ms22cs130
+Assistant
+just now
+If you're having trouble changing auth.tsx, let's ensure you're correctly implementing the code with the changes discussed. Here's the complete updated code for auth.tsx, which includes enhanced error handling and role management:
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const success = await connectWallet();
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: "Success!",
+          description: isLogin
+            ? "Logged in successfully"
+            : "Account created successfully",
+        });
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error(
+          "Authentication failed, please check your wallet connection."
+        );
+      }
+    } catch (error) {
+      console.error("Error during wallet connection:", error); // Log the error for debugging
+      toast({
+        title: "Error",
+        description:
+          error.message || "An unexpected error occurred. Please try again.", // More informative error messages
+        variant: "destructive",
+      });
+    }
+  };
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">
+            {isLogin ? "Login" : "Sign Up"}
+          </h2>
+          <p className="text-gray-600">Connect your wallet to continue</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <div className="flex justify-center gap-4">
+              <Button
+                type="button"
+                variant={role === "user" ? "default" : "outline"}
+                onClick={() => setRole("user")}
+              >
+                User
+              </Button>
+              <Button
+                type="button"
+                variant={role === "admin" ? "default" : "outline"}
+                onClick={() => setRole("admin")}
+              >
+                Admin
+              </Button>
+            </div>
+          </div>
+          <Button type="submit" className="w-full">
+            Connect Wallet
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+Key Updates:
+Error Handling: The catch block logs errors to the console and displays a detailed error message in the toast.
+Role Management: The role selection is clearly defined, helping the app determine where to redirect users after connection.
+Make sure you are saving the changes and running the app again after making these edits. If it still doesn't work, check the console for errors, and feel free to share them for more assistance!
+
+Assistant mode
+
+basic
+Gemini 1.5 Flash
+
+Ask Assistant, use @ to include specific files...
+/
+
+3s
+ • 
+Just now
+Dev URL:
+https://893f3aaf-d459-44fc-bb08-314e3b2de39c-00-qxyxwoj0tq0x.janeway.replit.dev/
+Dev URLs are temporary and will sleep after you leave the workspace.
+Ports
+Learn more
+Internal Port
+External Port
+Name
+Pid
+0.0.0.0:3001
+0.0.0.0:5000
+node
+1936
+This port config is saved in the .
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWallet } from "@/lib/walletContext";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [role, setRole] = useState("user");
+  const { connectWallet, setIsAdmin } = useWallet();
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const success = await connectWallet();
+      if (success) {
+        setIsAdmin(role === "admin");
+        toast({
+          title: "Success!",
+          description: isLogin
+            ? "Logged in successfully"
+            : "Account created successfully",
+        });
+        setLocation(role === "admin" ? "/admin" : "/dashboard");
+      } else {
+        throw new Error(
+          "Authentication failed, please check your wallet connection.",
+        );
+      }
+    } catch (error) {
+      console.error("Error during wallet connection:", error); // Log the error for debugging
+      toast({
+        title: "Error",
+        description:
+          error.message || "An unexpected error occurred. Please try again.", // More informative error messages
+        variant: "destructive",
+      });
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">
+            {isLogin ? "Login" : "Sign Up"}
+          </h2>
+          <p className="text-gray-600">Connect your wallet to continue</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <div className="flex justify-center gap-4">
+              <Button
+                type="button"
+                variant={role === "user" ? "default" : "outline"}
+                onClick={() => setRole("user")}
+              >
+                User
+              </Button>
+              <Button
+                type="button"
+                variant={role === "admin" ? "default" : "outline"}
+                onClick={() => setRole("admin")}
+              >
+                Admin
+              </Button>
+            </div>
+          </div>
+          <Button type="submit" className="w-full">
+            Connect Wallet
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
