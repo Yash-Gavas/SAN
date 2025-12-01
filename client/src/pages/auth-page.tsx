@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
-import { Loader2, TrendingUp, Shield, Users } from "lucide-react";
+import { Loader2, HardDrive, Shield, Zap } from "lucide-react";
 
 export default function AuthPage() {
   const [, setLocation] = useLocation();
@@ -27,11 +27,7 @@ export default function AuthPage() {
 
   // Redirect if already logged in
   if (user) {
-    if (user.username === 'admin') {
-      setLocation('/admin');
-    } else {
-      setLocation('/dashboard');
-    }
+    setLocation('/');
     return null;
   }
 
@@ -55,7 +51,6 @@ export default function AuthPage() {
     registerMutation.mutate({
       username: registerData.username,
       password: registerData.password,
-      walletAddress: null
     });
   };
 
@@ -74,14 +69,14 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
         {/* Left side - Auth Forms */}
         <div className="flex flex-col space-y-6">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold">Welcome to DeFi Protocol</h1>
-            <p className="text-muted-foreground">
-              Your gateway to decentralized finance
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">SAN Console</h1>
+            <p className="text-gray-600 dark:text-gray-300">
+              Storage Area Network Management Platform
             </p>
           </div>
 
@@ -103,11 +98,13 @@ export default function AuthPage() {
                       <Input
                         id="login-username"
                         type="text"
+                        placeholder="Enter your username"
                         value={loginData.username}
                         onChange={(e) =>
                           setLoginData({ ...loginData, username: e.target.value })
                         }
                         required
+                        autoComplete="username"
                       />
                     </div>
                     <div className="space-y-2">
@@ -115,11 +112,13 @@ export default function AuthPage() {
                       <Input
                         id="login-password"
                         type="password"
+                        placeholder="Enter your password"
                         value={loginData.password}
                         onChange={(e) =>
                           setLoginData({ ...loginData, password: e.target.value })
                         }
                         required
+                        autoComplete="current-password"
                       />
                     </div>
                     <Button 
@@ -138,19 +137,19 @@ export default function AuthPage() {
                     </Button>
                   </form>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-2 pt-4 border-t">
                     <Button
                       type="button"
                       variant="outline"
-                      className="w-full"
+                      className="w-full text-sm"
                       onClick={adminLogin}
                     >
-                      Quick Admin Login
+                      Quick Admin Access
                     </Button>
                     <Button
                       type="button"
                       variant="outline"
-                      className="w-full"
+                      className="w-full text-sm"
                       onClick={demoLogin}
                     >
                       Demo Account
@@ -165,11 +164,13 @@ export default function AuthPage() {
                       <Input
                         id="register-username"
                         type="text"
+                        placeholder="Choose a username"
                         value={registerData.username}
                         onChange={(e) =>
                           setRegisterData({ ...registerData, username: e.target.value })
                         }
                         required
+                        autoComplete="username"
                       />
                     </div>
                     <div className="space-y-2">
@@ -177,11 +178,13 @@ export default function AuthPage() {
                       <Input
                         id="register-password"
                         type="password"
+                        placeholder="Create a strong password"
                         value={registerData.password}
                         onChange={(e) =>
                           setRegisterData({ ...registerData, password: e.target.value })
                         }
                         required
+                        autoComplete="new-password"
                       />
                     </div>
                     <div className="space-y-2">
@@ -189,11 +192,13 @@ export default function AuthPage() {
                       <Input
                         id="confirm-password"
                         type="password"
+                        placeholder="Confirm your password"
                         value={registerData.confirmPassword}
                         onChange={(e) =>
                           setRegisterData({ ...registerData, confirmPassword: e.target.value })
                         }
                         required
+                        autoComplete="new-password"
                       />
                     </div>
                     <Button 
@@ -220,47 +225,47 @@ export default function AuthPage() {
         {/* Right side - Hero Section */}
         <div className="hidden lg:block space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Decentralized Finance
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+              Enterprise Storage Management
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Lend, borrow, and trade crypto assets with complete transparency and security
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Unified management of storage infrastructure, capacity pooling, and disaster recovery
             </p>
           </div>
 
           <div className="grid gap-6">
-            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-card">
-              <div className="p-2 rounded-full bg-primary/10">
-                <TrendingUp className="h-6 w-6 text-primary" />
+            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-white dark:bg-slate-800 shadow-sm">
+              <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900">
+                <HardDrive className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-semibold">High Yield Lending</h3>
-                <p className="text-sm text-muted-foreground">
-                  Earn competitive APY on your crypto assets
+                <h3 className="font-semibold text-gray-900 dark:text-white">Storage Pooling</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Aggregate storage capacity with automated tiering and load balancing
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-card">
-              <div className="p-2 rounded-full bg-primary/10">
-                <Shield className="h-6 w-6 text-primary" />
+            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-white dark:bg-slate-800 shadow-sm">
+              <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900">
+                <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-semibold">Secure Borrowing</h3>
-                <p className="text-sm text-muted-foreground">
-                  Collateralized loans with automated liquidation protection
+                <h3 className="font-semibold text-gray-900 dark:text-white">Disaster Recovery</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Automated replication and failover for business continuity
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-card">
-              <div className="p-2 rounded-full bg-primary/10">
-                <Users className="h-6 w-6 text-primary" />
+            <div className="flex items-center space-x-4 p-6 rounded-lg border bg-white dark:bg-slate-800 shadow-sm">
+              <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900">
+                <Zap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-semibold">Social Trading</h3>
-                <p className="text-sm text-muted-foreground">
-                  Share achievements and connect with the DeFi community
+                <h3 className="font-semibold text-gray-900 dark:text-white">Performance Monitoring</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Real-time analytics and alerts for optimal system health
                 </p>
               </div>
             </div>
